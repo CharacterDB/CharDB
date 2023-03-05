@@ -1,0 +1,16 @@
+{
+  "name": "chardb",
+  "description": "CharDB is a database layout to store and study Chinese and Japanese vocabulary based on James Heisig's teachings. It links primitives and meanings only and does not replace Heisig's books.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0"
+  },
+  "type": "module"
+}

@@ -1,5 +1,9 @@
 CREATE DATABASE chardb;
 
+CREATE USER 'chardb'@'localhost' IDENTIFIED BY 'DJQePMN3CJNadoifXMt3';
+
+GRANT ALL PRIVILEGES ON chardb.* TO 'chardb'@'localhost';
+
 USE chardb;
 
 CREATE TABLE
