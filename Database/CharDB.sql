@@ -19,7 +19,7 @@ CREATE TABLE
         meaning VARCHAR(100) NOT NULL,
         keyword BIT NOT NULL DEFAULT 0,
         PRIMARY KEY (character_id, meaning),
-        FOREIGN KEY (character_id) REFERENCES characters(id)
+        FOREIGN KEY (character_id) REFERENCES characters(id),
     );
 
 CREATE TABLE

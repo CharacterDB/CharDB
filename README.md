@@ -7,3 +7,9 @@ CharDB is a database layout to store and study Chinese and Japanese vocabulary b
 ## Current State
 
 Currently CharDB is in a premature development state and only supports the chinese system.
+
+### TODO:
+
+> Here you can find flaws we need to fix that came up during development and testing but were not easy to solve immediately
+
+ - Ensure only one keyword per character

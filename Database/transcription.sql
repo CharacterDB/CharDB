@@ -163,7 +163,7 @@ CREATE OR REPLACE VIEW transcription AS
 	                        AND tones.tone = pronunciation.tone
 	                )
 	            )
-	            ELSE ''
-	    END AS pinyin
+	            ELSE pronunciation
+	    END AS transcription
 	FROM characters
 	    LEFT JOIN pronunciation ON characters.id = pronunciation.character_id; 
