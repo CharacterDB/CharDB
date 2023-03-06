@@ -1,5 +1,9 @@
 -- easily access all information about characters by pronunciation and LIMIT
 
+USE chardb;
+
+
+
 CREATE PROCEDURE get_characters(IN search_term VARCHAR(10), IN limit_param INT)
 BEGIN 
 	SELECT
@@ -13,12 +17,12 @@ BEGIN
 	        SELECT *
 	        FROM transcription
 	        WHERE
-	            transcription LIKE CONCAT('%', search_term, '%')
+	            IFNULL(transcription, '') LIKE CONCAT('%',search_term,'%')
 	        ORDER BY id
 	        LIMIT
 	            limit_param
 	    ) transcription
-    JOIN meaning ON transcription.id = meaning.character_id
+    LEFT JOIN meaning ON transcription.id = meaning.character_id
     UNION
     SELECT
         id,
@@ -39,4 +43,4 @@ BEGIN
         JOIN composition composition ON transcription.id = composition.character_id;
 END; 
 
-CALL get_characters('i', 4);
+CALL get_characters('', 100);
