@@ -13,3 +13,4 @@ Currently CharDB is in a premature development state and only supports the chine
 > Here you can find flaws we need to fix that came up during development and testing but were not easy to solve immediately
 
  - Ensure only one keyword per character
+ - Error Handling in API
