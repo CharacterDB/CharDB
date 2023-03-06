@@ -14,3 +14,6 @@ Currently CharDB is in a premature development state and only supports the chine
 
  - Ensure only one keyword per character
  - Error Handling in API
+ - paging in characters query
+ - consistent term `transcription` replaces `pronunciation`
+ - use bulk requests for better readability

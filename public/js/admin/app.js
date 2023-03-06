@@ -18,9 +18,9 @@ const transcription = document.querySelector("#transcription");
 const keyword = document.querySelector("#keyword");
 const tone = document.querySelector("#tone");
 
-// forms and buttons
+// forms
+const newCharacter = document.querySelector("#new-character");
 const meaningsForm = document.querySelector("#meanings-form");
-const saveButton = document.querySelector("#save");
 
 // showcase lists
 const primitiveShowcase = document.querySelector("#primitive-showcase");
@@ -31,9 +31,9 @@ const meaningsList = document.querySelector("#meanings-list");
 function parseInputs() {
     character.id = id.value || null;
     character.symbol = symbol.value;
-    character.transcription = transcription.value;
+    character.transcription = transcription.value.trim().toLowerCase();
     character.tone = parseInt(tone.value);
-    character.keyword = keyword.value;
+    character.keyword = keyword.value.trim().toLowerCase();
 }
 
 function resetInputs() {
@@ -77,6 +77,7 @@ function addPrimitive(char) {
 }
 
 async function showCasePrimitives(transcription) {
+    primitiveShowcase.innerHTML = '';
     const search = await fetch("/api/characters?pronunciation=" + transcription);
     const data = await search.json();
     for (let id in data) {
@@ -108,7 +109,6 @@ function addMeaning(meaning) {
 }
 
 compositionInput.addEventListener('keyup', async (e) => {
-    primitiveShowcase.innerHTML = '';
     const transcription = compositionInput.value;
     showCasePrimitives(transcription);
 });
@@ -122,10 +122,18 @@ meaningsForm.addEventListener('submit', async (e) => {
 });
 
 
-saveButton.addEventListener('click', (e) => {
+newCharacter.addEventListener('submit', async (e) => {
+    e.preventDefault();
     parseInputs();
-    console.log(character);
+    await fetch('/admin/characters/', {
+        method: 'POST',
+        body: JSON.stringify(character),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    });
     resetInputs();
+    showCasePrimitives('');
 });
 
 showCasePrimitives('');

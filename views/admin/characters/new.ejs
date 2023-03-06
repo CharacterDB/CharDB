@@ -19,37 +19,39 @@
             <h1 class="display-5">New Character</h1>
             <div class="row">
                 <section class="col">
-                    <label for="id" class="d-inline">ID:</label>
-                    <input placeholder="NULL" type="number" name="id" class="form-control" id="id">
-                    <label for="symbol" class="mt-2">Symbol:</label>
-                    <input placeholder="Symbol" type="text" name="symbol" class="form-control" id="symbol" required
-                        maxlength=1>
+                    <form id="new-character">
+                        <label for="id" class="d-inline">ID:</label>
+                        <input placeholder="NULL" type="number" name="id" class="form-control" id="id">
+                        <label for="symbol" class="mt-2">Symbol:</label>
+                        <input placeholder="Symbol" type="text" name="symbol" class="form-control" id="symbol" required
+                            maxlength=1>
 
-                    <label for="transcription" class="d-inline">Transcription:</label>
+                        <label for="transcription" class="d-inline">Transcription:</label>
 
-                    <div class="row mt-2">
-                        <div class="col-8">
-                            <input placeholder="Transcription" type="text" name="symbol" class="form-control"
-                                id="transcription" required>
+                        <div class="row mt-2">
+                            <div class="col-8">
+                                <input placeholder="Transcription" type="text" name="symbol" class="form-control"
+                                    id="transcription" required>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-select" name="tone" id="tone">
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="mt-2">
+                                <label for="keyword" class="d-inline">Keyword:</label>
+                                <input placeholder="Keyword" type="text" name="keyword" class="form-control"
+                                    id="keyword" required>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary" id="save">Save</button>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <select class="form-select" name="tone" id="tone">
-                                <option value="0" selected>0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                        <div class="mt-2">
-                            <label for="keyword" class="d-inline">Keyword:</label>
-                            <input placeholder="Keyword" type="text" name="keyword" class="form-control" id="keyword"
-                                required>
-                        </div>
-                        <div class="mt-2">
-                            <button class="btn btn-primary" id="save">Save</button>
-                        </div>
-                    </div>
+                    </form>
                 </section>
                 <section class="col">
                     <label for="composition">Composition:</label>
