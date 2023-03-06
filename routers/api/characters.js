@@ -1,18 +1,11 @@
 
 // imports
 import express from 'express';
-import mysql from 'mysql2/promise';
+import { connection } from '../../utilities/database.js';
 
 // create router
 const router = express.Router();
 
-// connect to database
-var connection = await mysql.createConnection({
-    host: 'localhost',
-    user: 'chardb',
-    password: 'DJQePMN3CJNadoifXMt3',
-    database: 'chardb'
-});
 
 // bind routes
 router.get('/', async (req, res) => {
