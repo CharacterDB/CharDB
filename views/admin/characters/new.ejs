@@ -8,20 +8,21 @@
     <title>Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/css/admin/app.css">
 </head>
 
 <body>
 
+    <div id="liveAlertPlaceholder" class="position-fixed top-0 end-0 p-2"></div>
+
     <div class=" d-flex bg-primary vh-100 justify-content-center align-items-center">
         <div class="bg-light p-3 rounded-4 w-75">
             <h1 class="display-5">New Character</h1>
+
             <div class="row">
-                <section class="col">
+                <section class="border-secondary p-2 col-md-4">
                     <form id="new-character">
                         <label for="id" class="d-inline">ID:</label>
-                        <input placeholder="NULL" type="number" name="id" class="form-control" id="id">
+                        <input placeholder="NULL" type="number" name="id" class="form-control" id="id" required>
                         <label for="symbol" class="mt-2">Symbol:</label>
                         <input placeholder="Symbol" type="text" name="symbol" class="form-control" id="symbol" required
                             maxlength=1>
@@ -53,13 +54,14 @@
                         </div>
                     </form>
                 </section>
-                <section class="col">
+                <section class="border-secondary p-2 col-md-4">
                     <label for="composition">Composition:</label>
                     <input placeholder="Primitive" type="text" id="composition" class="form-control">
                     <div class="p-1 d-flex flex-wrap" id="primitive-showcase"></div>
                     <div class="p-1 d-flex flex-wrap" id="primitives"></div>
                 </section>
-                <section class="col">
+
+                <section class="p-2 col-md-4">
                     <form action="" id="meanings-form">
                         <label for="meanings">Meanings:</label>
                         <input placeholder="meaning" type="text" id="meanings" class="form-control">

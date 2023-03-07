@@ -26,7 +26,20 @@ const meaningsForm = document.querySelector("#meanings-form");
 const primitiveShowcase = document.querySelector("#primitive-showcase");
 const primitives = document.querySelector("#primitives");
 const meaningsList = document.querySelector("#meanings-list");
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
+
+function alert(message, type) {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
+}
 
 function parseInputs() {
     character.id = id.value || null;
@@ -125,13 +138,18 @@ meaningsForm.addEventListener('submit', async (e) => {
 newCharacter.addEventListener('submit', async (e) => {
     e.preventDefault();
     parseInputs();
-    await fetch('/admin/characters/', {
+    const response = await fetch('/admin/characters/', {
         method: 'POST',
         body: JSON.stringify(character),
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
         }
     });
+    if (!response.ok) {
+        return alert(`ERROR: ${response.status} ${response.statusText}`, 'danger');
+    }
+
+    alert('Sucessfully inserted character', 'success');
     resetInputs();
     showCasePrimitives('');
 });

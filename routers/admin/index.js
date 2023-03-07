@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post('/characters', async (req, res) => {
+router.post('/characters', async (req, res, next) => {
     let { id, symbol, transcription, tone, keyword, meanings, primitives } = req.body;
     try {
         await connection.beginTransaction();
@@ -21,16 +21,21 @@ router.post('/characters', async (req, res) => {
         await connection.query('INSERT INTO pronunciation (character_id, pronunciation, tone) VALUES (?, ?, ?)', [id, transcription, tone]);
         await connection.query('INSERT INTO meaning (character_id, meaning, keyword) VALUES (?, ?, 1)', [id, keyword]);
 
-        meanings = meanings.map((meaning) => [id, meaning, 0]);
-        primitives = primitives.map((primitive) => [id, primitive]);
+        if (meanings.length) {
+            meanings = meanings.map((meaning) => [id, meaning, 0]);
+            await connection.query('INSERT INTO meaning (character_id, meaning, keyword) VALUES ?', [meanings]);
+        }
 
-        await connection.query('INSERT INTO meaning (character_id, meaning, keyword) VALUES ?', [meanings]);
-        //await connection.query('INSERT INTO composition (character_id, primitive_id) VALUES ?', [primitives]);
+        if (primitives.length) {
+            primitives = primitives.map((primitive) => [id, primitive]);
+            await connection.query('INSERT INTO composition (character_id, primitive_id) VALUES ?', [primitives]);
+        }
 
         await connection.commit();
     } catch (e) {
         await connection.rollback();
         console.log(e);
+        return next(new Error('Error inserting into database'));
     }
     console.log(id);
     console.log(symbol);
@@ -45,7 +50,6 @@ router.post('/characters', async (req, res) => {
 router.get('/characters/new', (req, res) => {
     res.render("admin/characters/new");
 });
-
 
 // export router
 export { router };
